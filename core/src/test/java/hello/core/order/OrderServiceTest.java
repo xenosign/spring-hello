@@ -18,6 +18,6 @@ public class OrderServiceTest {
         Member member = new Member(memberId, "memberA", Grade.VIP);
         memberService.join(member);
         Order order = orderService.createOrder(memberId, "itemA", 10000);
-        Assertions.assertEquals(order.getDiscountPrice(), 100);
+        Assertions.assertEquals(order.getDiscountPrice(), 1000);
     }
 }
