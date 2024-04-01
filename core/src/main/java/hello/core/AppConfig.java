@@ -15,23 +15,26 @@ import org.springframework.context.annotation.Configuration;
 public class AppConfig {
     @Bean
     public MemberService memberService() {
+        System.out.println("AppConfig.memberService");
         return new MemberServiceImpl(memberRepository());
     }
 
     // MemberService 와 OrderService 에서 각각 new 로 사용을 했었던 것을 메서드로 치환
     // 실제로 구현체가 변경이 되면 해당 함수의 리턴 값만 변경하면 된다
     @Bean
-    public static MemoryMemberRepository memberRepository() {
+    public MemoryMemberRepository memberRepository() {
+        System.out.println("AppConfig.memberRepository");
         return new MemoryMemberRepository();
     }
 
     @Bean
     public OrderService orderService() {
+        System.out.println("AppConfig.orderService");
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
     @Bean
-    public static DiscountPolicy discountPolicy() {
+    public DiscountPolicy discountPolicy() {
         // 원하는 정책을 쉽게 변경 가능
         return new RateDiscountPolicy();
         // return new FixDiscountPolicy();
